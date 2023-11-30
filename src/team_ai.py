@@ -43,7 +43,23 @@ def process_tick(context: ClientContext, game_state: GameState) -> Command | Non
         If your function takes longer than the max tick length the function is cancelled and None is returned.
     """
     ai_logger.info("processing tick")
-    move_command = Command(action=ActionType.Move, payload=MoveActionData(distance=2))
+
+    x = 0 # 1-3, liikkumismäärän mukaan!
+    m = 3 # massa
+    s = 3 # nopeus
+    Nsuunta = CompassDirection.North
+    NEsuunta = CompassDirection.NorthEast
+    Esuunta = CompassDirection.East
+    SEsuunta = CompassDirection.SouthEast
+    Ssuunta = CompassDirection.South
+    SWsuunta = CompassDirection.SouthWest
+    Wsuunta = CompassDirection.West
+    NWsuunta = CompassDirection.NorthWest
+
+    move_command = Command(action=ActionType.Move, payload=MoveActionData(distance=x))
+    shoot_command = Command(action=ActionType.Shoot, payload=ShootActionData(mass=m, speed=s))
+    turn_command = Command(action=ActionType.Turn, payload=TurnActionData(direction=suunta))
+
     
     
     """ 
