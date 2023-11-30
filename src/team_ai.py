@@ -80,9 +80,9 @@ def process_tick(context: ClientContext, game_state: GameState) -> Command | Non
         suunta = NWsuunta  
 
     rand = random.randint(1, 6)
-    if (1 <= rand <= 3):
-        command = Command(action=ActionType.Move, payload=MoveActionData(distance=3))
-    elif (3 < rand <= 5):
+    if (1 <= rand <= 2):
+        command = Command(action=ActionType.Move, payload=MoveActionData(distance=1))
+    elif (2 < rand <= 4):
         command = Command(action=ActionType.Shoot, payload=ShootActionData(mass=3, speed=3))
     else:
         command = Command(action=ActionType.Turn, payload=TurnActionData(direction=suunta))   
