@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from apiwrapper.websocket_wrapper import ClientContext
 from apiwrapper.models import GameState, Command, ActionType, CompassDirection, ShootActionData, TurnActionData, MoveActionData
 
+import random
 
 ai_logger = getLogger("team_ai")
 """You can use this logger to track the behaviour of your bot. 
@@ -56,12 +57,35 @@ def process_tick(context: ClientContext, game_state: GameState) -> Command | Non
     Wsuunta = CompassDirection.West
     NWsuunta = CompassDirection.NorthWest
 
-    move_command = Command(action=ActionType.Move, payload=MoveActionData(distance=x))
-    shoot_command = Command(action=ActionType.Shoot, payload=ShootActionData(mass=m, speed=s))
-    turn_command = Command(action=ActionType.Turn, payload=TurnActionData(direction=suunta))
+    """command = Command(action=ActionType.Move, payload=MoveActionData(distance=x))
+    command = Command(action=ActionType.Shoot, payload=ShootActionData(mass=m, speed=s))
+    command = Command(action=ActionType.Turn, payload=TurnActionData(direction=suunta))"""
 
-    
-    
+    d_rand = random.randint(1, 8)
+    if (d_rand == 1):
+        suunta = Nsuunta
+    elif (d_rand == 2):
+        suunta = NEsuunta
+    elif (d_rand == 3):
+        suunta = Esuunta 
+    elif (d_rand == 4):
+        suunta = SEsuunta
+    elif (d_rand == 5):
+        suunta = Ssuunta  
+    elif (d_rand == 6):
+        suunta = SWsuunta  
+    elif (d_rand == 7):
+        suunta = Wsuunta  
+    elif (d_rand == 8):
+        suunta = NWsuunta  
+
+    rand = random.randint(1, 6)
+    if (1 <= rand <= 3):
+        command = Command(action=ActionType.Move, payload=MoveActionData(distance=3))
+    elif (3 < rand <= 5):
+        command = Command(action=ActionType.Shoot, payload=ShootActionData(mass=3, speed=3))
+    else:
+        command = Command(action=ActionType.Turn, payload=TurnActionData(direction=suunta))   
     """ 
     1: Tsekataan ympäristö --> näkyykö vihollista tai seinää, missä?
 
@@ -86,4 +110,4 @@ def process_tick(context: ClientContext, game_state: GameState) -> Command | Non
     2e (ei mitään):
         move_command = Command(action_type=ActionType.Move
     """
-    return move_command
+    return command
