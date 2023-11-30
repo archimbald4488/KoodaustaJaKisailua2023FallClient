@@ -45,4 +45,29 @@ def process_tick(context: ClientContext, game_state: GameState) -> Command | Non
     ai_logger.info("processing tick")
     move_command = Command(action=ActionType.Move, payload=MoveActionData(distance=2))
     
+    
+    """ 
+    1: Tsekataan ympäristö --> näkyykö vihollista tai seinää, missä?
+
+    
+    2a (vihollinen): 
+        jos (seinä x lähellä):
+            move_command = Command(action_type=ActionType.Turn
+            
+        jos (vihollinen suunnassa x) [eli suoraan koordinaatistossa horisontaalisti, vertikaalisesti tai ristiin]:
+            move_command = Command(action_type=ActionType.Shoot
+        muuten:
+            laske lähin suunta, jossa vihollinen on sijainniltaan aiemman kohdan mukainen
+            move_command = Command(action_type=ActionType.Move
+
+    2b (seinä): 
+        jos (toinen seinä):
+            käännytään vastakkaiseen suuntaan seinän 2 kanssa
+            move_command = Command(action_type=ActionType.Turn
+        käännytään kulkemaan seinän kanssa yhdensuuntaisesti
+        move_command = Command(action_type=ActionType.Turn
+
+    2e (ei mitään):
+        move_command = Command(action_type=ActionType.Move
+    """
     return move_command
