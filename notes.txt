@@ -1,0 +1,18 @@
+
+1: Tsekataan ympäristö --> näkyykö vihollista tai seinää, missä?
+
+Kulkeminen
+2a (vihollinen): 
+    jos (seinä x lähellä):
+        ei kuljeta sinne suuntaan
+    jos (vihollinen suunnassa x) [eli suoraan koordinaatistossa horisontaalisti, vertikaalisesti tai ristiin]:
+        *ampuu*
+    muuten:
+        laske lähin suunta, jossa vihollinen on sijainniltaan aiemman kohdan mukainen
+
+2b (seinä): 
+    jos (toinen seinä):
+        käännytään vastakkaiseen suuntaan seinän 2 kanssa
+    käännytään kulkemaan seinän kanssa yhdensuuntaisesti
+
+2e (ei mitään):
