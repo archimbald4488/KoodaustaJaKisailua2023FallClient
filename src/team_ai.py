@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from apiwrapper.websocket_wrapper import ClientContext
-from apiwrapper.models import GameState, Command
+from apiwrapper.models import GameState, Command, ActionType, CompassDirection, ShootActionData, TurnActionData, MoveActionData
 
 
 ai_logger = getLogger("team_ai")
@@ -43,6 +43,6 @@ def process_tick(context: ClientContext, game_state: GameState) -> Command | Non
         If your function takes longer than the max tick length the function is cancelled and None is returned.
     """
     ai_logger.info("processing tick")
-
-    # please add your code here
-    return None
+    move_command = Command(action_type=ActionType.Move, payload=MoveActionData(distance=2))
+    
+    return move_command
