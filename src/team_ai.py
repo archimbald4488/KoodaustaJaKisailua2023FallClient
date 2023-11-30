@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from apiwrapper.websocket_wrapper import ClientContext
-from apiwrapper.models import GameState, Command, ActionType, CompassDirection, ShootActionData, TurnActionData, MoveActionData
+from apiwrapper.models import GameState, Command, ActionType, CompassDirection, ShootActionData, TurnActionData, MoveActionData, ShipData
 
 import random
 
@@ -61,6 +61,11 @@ def process_tick(context: ClientContext, game_state: GameState) -> Command | Non
     command = Command(action=ActionType.Shoot, payload=ShootActionData(mass=m, speed=s))
     command = Command(action=ActionType.Turn, payload=TurnActionData(direction=suunta))"""
 
+    if (ShipData.heat >= 20):
+        x = 3
+        command = Command(action=ActionType.Move, payload=MoveActionData(distance=x))
+        return command
+
     d_rand = random.randint(1, 8)
     if (d_rand == 1):
         suunta = Nsuunta
@@ -86,6 +91,8 @@ def process_tick(context: ClientContext, game_state: GameState) -> Command | Non
         command = Command(action=ActionType.Shoot, payload=ShootActionData(mass=3, speed=3))
     else:
         command = Command(action=ActionType.Turn, payload=TurnActionData(direction=suunta))   
+    
+    
     """ 
     1: Tsekataan ympäristö --> näkyykö vihollista tai seinää, missä?
 
