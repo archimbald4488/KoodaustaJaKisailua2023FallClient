@@ -43,6 +43,6 @@ def process_tick(context: ClientContext, game_state: GameState) -> Command | Non
         If your function takes longer than the max tick length the function is cancelled and None is returned.
     """
     ai_logger.info("processing tick")
-    move_command = Command(action_type=ActionType.Move, payload=MoveActionData(distance=2))
+    move_command = Command(action=ActionType.Move, payload=MoveActionData(distance=2))
     
     return move_command
