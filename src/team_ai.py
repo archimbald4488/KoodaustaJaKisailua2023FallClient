@@ -61,11 +61,6 @@ def process_tick(context: ClientContext, game_state: GameState) -> Command | Non
     command = Command(action=ActionType.Shoot, payload=ShootActionData(mass=m, speed=s))
     command = Command(action=ActionType.Turn, payload=TurnActionData(direction=suunta))"""
 
-    if (ShipData.heat >= 20):
-        x = 3
-        command = Command(action=ActionType.Move, payload=MoveActionData(distance=x))
-        return command
-
     d_rand = random.randint(1, 8)
     if (d_rand == 1):
         suunta = Nsuunta
