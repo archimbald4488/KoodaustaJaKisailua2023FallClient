@@ -7,6 +7,7 @@ Client helper/wrapper for the koodausta ja kisailua 2023 fall event.
 
 f you are not using a tool like PyCharm you need to manually create or move to the
 virtual environment
+-testi
 
 Creating the virtual environment is done with python's venv module:
 `python -m venv .\venv`
