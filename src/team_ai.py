@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from apiwrapper.websocket_wrapper import ClientContext
-from apiwrapper.models import GameState, Command, ActionType, CompassDirection, ShootActionData, TurnActionData, MoveActionData
+from apiwrapper.models import GameState, Command, ActionType, CompassDirection, ShootActionData, TurnActionData, MoveActionData, ShipData
 
 
 ai_logger = getLogger("team_ai")
@@ -60,6 +60,14 @@ def process_tick(context: ClientContext, game_state: GameState) -> Command | Non
     shoot_command = Command(action=ActionType.Shoot, payload=ShootActionData(mass=m, speed=s))
     turn_command = Command(action=ActionType.Turn, payload=TurnActionData(direction=suunta))
 
+    if (ShipData.heat >= 20):
+        if (seinä):
+            suunta = #vastakkainen suunta
+            turn_command = Command(action=ActionType.Turn, payload=TurnActionData(direction=suunta))
+            return turn_command
+        x = 3
+        move_command = Command(action=ActionType.Move, payload=MoveActionData(distance=x))
+        return move_command
     
     
     """ 
